@@ -1,0 +1,9 @@
+# Ignore temporary files, caches, and output drafts
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+scratch/
+output/
+dist/
+.agents/

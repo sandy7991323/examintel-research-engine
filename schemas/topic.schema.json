@@ -1,0 +1,162 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "topic.schema.json",
+  "title": "Topic",
+  "description": "Schema for a syllabus topic, capturing its importance, exam frequency, prerequisite relationships, and structured content sections for study material generation.",
+  "type": "object",
+  "properties": {
+    "topic_id": {
+      "type": "string",
+      "description": "Unique identifier for this topic."
+    },
+    "topic_name": {
+      "type": "string",
+      "description": "Human-readable name of the topic."
+    },
+    "unit_number": {
+      "type": "integer",
+      "description": "Syllabus unit number this topic belongs to.",
+      "minimum": 1
+    },
+    "unit_title": {
+      "type": "string",
+      "description": "Title of the parent syllabus unit."
+    },
+    "syllabus_id": {
+      "type": "string",
+      "description": "Identifier of the syllabus this topic is sourced from."
+    },
+    "subtopics": {
+      "type": "array",
+      "description": "List of narrower subtopics within this topic.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prerequisite_topics": {
+      "type": "array",
+      "description": "Topic IDs that should be studied before this topic.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_topics": {
+      "type": "array",
+      "description": "Topic IDs that are conceptually related.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "importance_level": {
+      "type": "string",
+      "description": "Relative importance based on exam frequency and syllabus weight.",
+      "enum": ["critical", "high", "medium", "low"]
+    },
+    "exam_frequency": {
+      "type": "object",
+      "description": "Historical exam-appearance statistics for this topic.",
+      "properties": {
+        "times_appeared": {
+          "type": "integer",
+          "description": "Total number of times questions from this topic have appeared.",
+          "minimum": 0
+        },
+        "years": {
+          "type": "array",
+          "description": "List of exam years in which this topic appeared.",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "evidence_type": {
+          "type": "string",
+          "description": "How the frequency data was derived.",
+          "enum": ["exact_match", "keyword_match", "inferred", "manual"]
+        }
+      },
+      "required": ["times_appeared"]
+    },
+    "content_sections": {
+      "type": "array",
+      "description": "Structured content blocks for this topic, used in study material generation.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "section_type": {
+            "type": "string",
+            "description": "Kind of content section.",
+            "enum": [
+              "definition",
+              "explanation",
+              "example",
+              "diagram",
+              "formula",
+              "comparison",
+              "advantages_disadvantages",
+              "code",
+              "summary",
+              "real_world_application",
+              "historical_context"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "Markdown-formatted content of this section."
+          }
+        },
+        "required": ["section_type", "content"]
+      }
+    },
+    "diagrams": {
+      "type": "array",
+      "description": "Diagrams associated with this topic.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "diagram_id": {
+            "type": "string",
+            "description": "Unique identifier for the diagram."
+          },
+          "caption": {
+            "type": "string",
+            "description": "Caption or title of the diagram."
+          },
+          "diagram_type": {
+            "type": "string",
+            "description": "Type of diagram (e.g. flowchart, block-diagram, circuit, graph)."
+          },
+          "content": {
+            "type": "string",
+            "description": "Mermaid, ASCII, or other renderable diagram source."
+          }
+        },
+        "required": ["caption", "content"]
+      }
+    },
+    "key_terms": {
+      "type": "array",
+      "description": "Important terms and their short definitions related to this topic.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string"
+          },
+          "definition": {
+            "type": "string"
+          }
+        },
+        "required": ["term", "definition"]
+      }
+    },
+    "common_mistakes": {
+      "type": "array",
+      "description": "Frequently made errors students should avoid when answering questions on this topic.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["topic_id", "topic_name"],
+  "additionalProperties": false
+}

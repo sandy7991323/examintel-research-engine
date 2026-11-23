@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "paper.schema.json",
+  "title": "Exam Paper",
+  "description": "Schema for a parsed university examination paper, capturing its structure, sections, questions, and extraction metadata.",
+  "type": "object",
+  "properties": {
+    "paper_id": {
+      "type": "string",
+      "description": "Unique identifier for this exam paper."
+    },
+    "university": {
+      "type": "string",
+      "description": "Name of the university that conducted the examination."
+    },
+    "course": {
+      "type": "string",
+      "description": "Degree programme or course name (e.g. B.Tech CSE, MCA)."
+    },
+    "semester": {
+      "type": ["string", "integer"],
+      "description": "Semester number or label (e.g. 5, 'V', 'odd')."
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject or paper title."
+    },
+    "subject_code": {
+      "type": "string",
+      "description": "Official subject/paper code as printed on the question paper."
+    },
+    "exam_year": {
+      "type": "integer",
+      "description": "Calendar year the examination was held.",
+      "minimum": 1900,
+      "maximum": 2100
+    },
+    "exam_session": {
+      "type": "string",
+      "description": "Session in which the exam was conducted.",
+      "enum": ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec", "odd", "even", "supplementary", "special", "unknown"]
+    },
+    "max_marks": {
+      "type": "integer",
+      "description": "Maximum marks for the paper.",
+      "minimum": 0
+    },
+    "duration_minutes": {
+      "type": "integer",
+      "description": "Duration of the examination in minutes.",
+      "minimum": 0
+    },
+    "sections": {
+      "type": "array",
+      "description": "Ordered list of sections in the paper.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "section_name": {
+            "type": "string",
+            "description": "Name or label of the section (e.g. 'Section A', 'Part I')."
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Instructions printed at the top of this section."
+          },
+          "questions": {
+            "type": "array",
+            "description": "List of question identifiers or inline question objects belonging to this section.",
+            "items": {
+              "type": ["string", "object"]
+            }
+          }
+        },
+        "required": ["section_name"]
+      },
+      "minItems": 1
+    },
+    "total_questions": {
+      "type": "integer",
+      "description": "Total number of questions across all sections.",
+      "minimum": 0
+    },
+    "internal_choices": {
+      "type": "boolean",
+      "description": "Whether the paper contains internal (OR-type) choices within questions."
+    },
+    "source_file": {
+      "type": "string",
+      "description": "Original filename or path of the source document from which this paper was extracted."
+    },
+    "extraction_method": {
+      "type": "string",
+      "description": "Method used to extract paper data (e.g. 'manual', 'ocr', 'pdf-parse', 'vision')."
+    },
+    "extraction_confidence": {
+      "type": "number",
+      "description": "Confidence score of the extraction process.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "unreadable_portions": {
+      "type": "array",
+      "description": "Descriptions of portions that could not be reliably extracted.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["paper_id", "university", "subject", "exam_year", "sections"],
+  "additionalProperties": false
+}

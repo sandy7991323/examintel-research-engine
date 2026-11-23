@@ -1,0 +1,250 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "study-material.schema.json",
+  "title": "Study Material",
+  "description": "Master output schema for the ExamIntel Research Engine. Ties together a parsed paper, syllabus, questions, answers, topics, and research sources into a single structured study-material document.",
+  "type": "object",
+  "properties": {
+    "material_id": {
+      "type": "string",
+      "description": "Unique identifier for this study material bundle."
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of this material (e.g. '1.0.0')."
+    },
+    "generated_date": {
+      "type": "string",
+      "description": "ISO 8601 date-time when this material was generated.",
+      "format": "date-time"
+    },
+    "paper": {
+      "$ref": "paper.schema.json",
+      "description": "The parsed examination paper."
+    },
+    "syllabus": {
+      "$ref": "syllabus.schema.json",
+      "description": "The mapped syllabus."
+    },
+    "questions": {
+      "type": "array",
+      "description": "All extracted questions.",
+      "items": {
+        "$ref": "question.schema.json"
+      },
+      "minItems": 1
+    },
+    "answers": {
+      "type": "array",
+      "description": "Model answers for the extracted questions.",
+      "items": {
+        "$ref": "answer.schema.json"
+      },
+      "minItems": 1
+    },
+    "topics": {
+      "type": "array",
+      "description": "Topics covered in the material, enriched with frequency and content.",
+      "items": {
+        "$ref": "topic.schema.json"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Research sources consulted during material generation.",
+      "items": {
+        "$ref": "research-source.schema.json"
+      }
+    },
+    "question_bank": {
+      "type": "object",
+      "description": "Categorised question bank for practice and revision.",
+      "properties": {
+        "historical": {
+          "type": "array",
+          "description": "Questions sourced from previous exam papers.",
+          "items": { "$ref": "question.schema.json" }
+        },
+        "syllabus_based": {
+          "type": "array",
+          "description": "Questions generated from syllabus topics not yet asked in exams.",
+          "items": { "$ref": "question.schema.json" }
+        },
+        "practice": {
+          "type": "array",
+          "description": "Additional practice questions of mixed difficulty.",
+          "items": { "$ref": "question.schema.json" }
+        },
+        "application": {
+          "type": "array",
+          "description": "Application and scenario-based questions.",
+          "items": { "$ref": "question.schema.json" }
+        }
+      }
+    },
+    "revision_notes": {
+      "type": "object",
+      "description": "Quick-revision content grouped by type.",
+      "properties": {
+        "definitions": {
+          "type": "array",
+          "description": "Key definitions.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "term": { "type": "string" },
+              "definition": { "type": "string" },
+              "topic_id": { "type": "string" }
+            },
+            "required": ["term", "definition"]
+          }
+        },
+        "comparisons": {
+          "type": "array",
+          "description": "Side-by-side comparisons.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item_a": { "type": "string" },
+              "item_b": { "type": "string" },
+              "differences": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "aspect": { "type": "string" },
+                    "a_value": { "type": "string" },
+                    "b_value": { "type": "string" }
+                  },
+                  "required": ["aspect", "a_value", "b_value"]
+                }
+              },
+              "topic_id": { "type": "string" }
+            },
+            "required": ["item_a", "item_b", "differences"]
+          }
+        },
+        "formulas": {
+          "type": "array",
+          "description": "Important formulas for quick reference.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "latex": { "type": "string" },
+              "topic_id": { "type": "string" }
+            },
+            "required": ["label", "latex"]
+          }
+        },
+        "key_concepts": {
+          "type": "array",
+          "description": "Core concepts summarised in one or two sentences.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "concept": { "type": "string" },
+              "summary": { "type": "string" },
+              "topic_id": { "type": "string" }
+            },
+            "required": ["concept", "summary"]
+          }
+        },
+        "quick_notes": {
+          "type": "array",
+          "description": "Miscellaneous quick-revision bullet points.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "description": "Aggregate statistics about the generated material.",
+      "properties": {
+        "total_questions": {
+          "type": "integer",
+          "description": "Total number of questions across all categories.",
+          "minimum": 0
+        },
+        "total_topics": {
+          "type": "integer",
+          "description": "Total number of topics covered.",
+          "minimum": 0
+        },
+        "total_sources": {
+          "type": "integer",
+          "description": "Total number of research sources consulted.",
+          "minimum": 0
+        },
+        "coverage_percentage": {
+          "type": "number",
+          "description": "Percentage of syllabus topics covered by the material.",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "description": "Known limitations or caveats of this study material.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "quality_report": {
+      "type": "object",
+      "description": "Overall quality assessment of the generated material.",
+      "properties": {
+        "overall_score": {
+          "type": "number",
+          "description": "Aggregate quality score (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "syllabus_alignment": {
+          "type": "number",
+          "description": "How well the material aligns with the syllabus (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "answer_quality": {
+          "type": "number",
+          "description": "Average quality of model answers (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source_reliability": {
+          "type": "number",
+          "description": "Average reliability of consulted sources (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "issues": {
+          "type": "array",
+          "description": "List of identified quality issues.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": ["critical", "warning", "info"]
+              },
+              "message": {
+                "type": "string"
+              },
+              "affected_item": {
+                "type": "string",
+                "description": "ID of the affected question, answer, topic, or source."
+              }
+            },
+            "required": ["severity", "message"]
+          }
+        }
+      }
+    }
+  },
+  "required": ["material_id", "paper", "questions", "answers"],
+  "additionalProperties": false
+}

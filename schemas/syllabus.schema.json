@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "syllabus.schema.json",
+  "title": "Syllabus",
+  "description": "Schema for a university subject syllabus, including unit-wise topics, prescribed/reference books, and verification metadata.",
+  "type": "object",
+  "properties": {
+    "syllabus_id": {
+      "type": "string",
+      "description": "Unique identifier for this syllabus record."
+    },
+    "university": {
+      "type": "string",
+      "description": "Name of the university."
+    },
+    "course": {
+      "type": "string",
+      "description": "Degree programme or course name."
+    },
+    "semester": {
+      "type": ["string", "integer"],
+      "description": "Semester number or label."
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject or paper title."
+    },
+    "subject_code": {
+      "type": "string",
+      "description": "Official subject/paper code."
+    },
+    "applicable_year": {
+      "type": ["integer", "string"],
+      "description": "Academic year or session this syllabus applies to (e.g. 2024, '2023-24')."
+    },
+    "units": {
+      "type": "array",
+      "description": "Ordered list of syllabus units.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "unit_number": {
+            "type": "integer",
+            "description": "Sequential unit number.",
+            "minimum": 1
+          },
+          "unit_title": {
+            "type": "string",
+            "description": "Title of the unit."
+          },
+          "topics": {
+            "type": "array",
+            "description": "List of topics covered in this unit.",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "hours_allocated": {
+            "type": "number",
+            "description": "Teaching hours allocated to this unit.",
+            "minimum": 0
+          }
+        },
+        "required": ["unit_number", "unit_title", "topics"]
+      },
+      "minItems": 1
+    },
+    "prescribed_books": {
+      "type": "array",
+      "description": "List of prescribed/textbook references.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Book title."
+          },
+          "author": {
+            "type": "string",
+            "description": "Author name(s)."
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publisher name."
+          },
+          "edition": {
+            "type": ["string", "integer"],
+            "description": "Edition number or label."
+          }
+        },
+        "required": ["title", "author"]
+      }
+    },
+    "reference_books": {
+      "type": "array",
+      "description": "List of additional reference books.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Book title."
+          },
+          "author": {
+            "type": "string",
+            "description": "Author name(s)."
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publisher name."
+          },
+          "edition": {
+            "type": ["string", "integer"],
+            "description": "Edition number or label."
+          }
+        },
+        "required": ["title", "author"]
+      }
+    },
+    "source_url": {
+      "type": "string",
+      "description": "URL from which the syllabus was obtained.",
+      "format": "uri"
+    },
+    "verification_status": {
+      "type": "string",
+      "description": "How the syllabus content has been verified.",
+      "enum": ["verified", "unverified", "inferred"]
+    },
+    "is_current": {
+      "type": "boolean",
+      "description": "Whether this is the currently active syllabus."
+    },
+    "last_updated": {
+      "type": "string",
+      "description": "ISO 8601 date when this record was last updated.",
+      "format": "date-time"
+    }
+  },
+  "required": ["syllabus_id", "university", "subject", "units"],
+  "additionalProperties": false
+}

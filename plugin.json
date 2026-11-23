@@ -1,0 +1,15 @@
+{
+  "name": "examintel-research-engine",
+  "version": "1.0.0",
+  "description": "Examination Question Paper Research & Academic Revision Engine for Antigravity",
+  "author": {
+    "name": "ExamIntel"
+  },
+  "keywords": [
+    "exam",
+    "question-paper",
+    "pyq",
+    "study-notes",
+    "academic-research"
+  ]
+}

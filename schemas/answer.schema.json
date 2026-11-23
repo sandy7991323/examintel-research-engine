@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "answer.schema.json",
+  "title": "Answer",
+  "description": "Schema for a model answer to an exam question, including structured content blocks, quality scoring, and review status.",
+  "type": "object",
+  "properties": {
+    "answer_id": {
+      "type": "string",
+      "description": "Unique identifier for this answer."
+    },
+    "question_id": {
+      "type": "string",
+      "description": "Identifier of the question this answer responds to."
+    },
+    "marks": {
+      "type": "integer",
+      "description": "Marks the question carries (duplicated here for quick reference).",
+      "minimum": 0
+    },
+    "word_count": {
+      "type": "integer",
+      "description": "Approximate word count of the answer content.",
+      "minimum": 0
+    },
+    "answer_content": {
+      "type": "string",
+      "description": "Full answer text in Markdown format."
+    },
+    "structure_type": {
+      "type": "string",
+      "description": "High-level structure used in the answer (e.g. 'paragraph', 'bullet_points', 'table', 'stepwise', 'mixed')."
+    },
+    "diagrams": {
+      "type": "array",
+      "description": "Diagrams included in the answer.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "diagram_id": {
+            "type": "string",
+            "description": "Unique identifier for the diagram."
+          },
+          "caption": {
+            "type": "string",
+            "description": "Caption or title."
+          },
+          "diagram_type": {
+            "type": "string",
+            "description": "Type of diagram."
+          },
+          "content": {
+            "type": "string",
+            "description": "Renderable diagram source (Mermaid, ASCII, etc.)."
+          }
+        },
+        "required": ["caption", "content"]
+      }
+    },
+    "tables": {
+      "type": "array",
+      "description": "Tables included in the answer.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "table_id": {
+            "type": "string",
+            "description": "Unique identifier for the table."
+          },
+          "caption": {
+            "type": "string",
+            "description": "Table caption."
+          },
+          "headers": {
+            "type": "array",
+            "description": "Column headers.",
+            "items": { "type": "string" }
+          },
+          "rows": {
+            "type": "array",
+            "description": "Row data.",
+            "items": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "required": ["headers", "rows"]
+      }
+    },
+    "formulas": {
+      "type": "array",
+      "description": "Mathematical or scientific formulas used in the answer.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "formula_id": {
+            "type": "string",
+            "description": "Unique identifier for the formula."
+          },
+          "label": {
+            "type": "string",
+            "description": "Human-readable label (e.g. 'Ohm\\'s Law')."
+          },
+          "latex": {
+            "type": "string",
+            "description": "LaTeX representation of the formula."
+          }
+        },
+        "required": ["label", "latex"]
+      }
+    },
+    "code_blocks": {
+      "type": "array",
+      "description": "Code snippets included in the answer.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Programming language."
+          },
+          "code": {
+            "type": "string",
+            "description": "Source code."
+          },
+          "caption": {
+            "type": "string",
+            "description": "Brief description of the code block."
+          }
+        },
+        "required": ["language", "code"]
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Source IDs used to compose this answer.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "review_status": {
+      "type": "string",
+      "description": "Current review state of the answer.",
+      "enum": ["draft", "reviewed", "verified"]
+    },
+    "writing_quality_score": {
+      "type": "object",
+      "description": "Quality metrics for the answer text.",
+      "properties": {
+        "naturalness": {
+          "type": "number",
+          "description": "How natural and human-like the writing sounds (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "clarity": {
+          "type": "number",
+          "description": "How clear and understandable the answer is (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "accuracy": {
+          "type": "number",
+          "description": "Factual and technical accuracy (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "completeness": {
+          "type": "number",
+          "description": "How completely the answer addresses the question (0-1).",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["naturalness", "clarity", "accuracy", "completeness"]
+    }
+  },
+  "required": ["answer_id", "question_id", "answer_content"],
+  "additionalProperties": false
+}

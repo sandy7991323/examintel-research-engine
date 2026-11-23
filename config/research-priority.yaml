@@ -1,0 +1,278 @@
+# =============================================================================
+# ExamIntel Research Engine — Research Priority & Source Strategy
+# =============================================================================
+# This file defines the priority order for research sources, verification
+# rules, conflict resolution, offline fallbacks, and strategies for finding
+# previous year papers and syllabus information.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Source Priority (1 = highest priority)
+# ---------------------------------------------------------------------------
+# When multiple sources provide information on the same topic, prefer the
+# higher-priority source. Lower-priority sources supplement — they don't
+# override — higher-priority ones unless the higher source is clearly outdated.
+# ---------------------------------------------------------------------------
+source_priorities:
+
+  - priority: 1
+    category: "official_university"
+    description: "Official university websites, exam portals, and published syllabi"
+    examples:
+      - "University exam cell websites"
+      - "Official course curriculum PDFs"
+      - "University-published model question papers"
+      - "Department websites with course outlines"
+    trust_level: highest
+    notes: >
+      Always treat the student's own university material as the most
+      authoritative source. Exam patterns, marking schemes, and syllabus
+      structure from the university override everything else.
+
+  - priority: 2
+    category: "prescribed_textbooks"
+    description: "Textbooks prescribed or recommended in the official syllabus"
+    examples:
+      - "Books listed in the university syllabus document"
+      - "Reference books named by the course coordinator"
+      - "Standard textbooks for the subject (e.g., Cormen for algorithms)"
+    trust_level: very_high
+    notes: >
+      Prescribed textbooks are the primary content source. Answers should
+      align with the terminology, definitions, and explanations used in
+      these books. If a textbook contradicts a newer source, note both but
+      prefer the textbook for exam answers.
+
+  - priority: 3
+    category: "government_educational"
+    description: "Government and regulatory educational body resources"
+    examples:
+      - "UGC (University Grants Commission) curriculum frameworks"
+      - "AICTE model curricula"
+      - "NCERT / CBSE resources for foundational topics"
+      - "National Knowledge Network resources"
+    trust_level: high
+    notes: >
+      Useful for understanding standardized curriculum expectations and
+      for topics where the university syllabus is vague or missing detail.
+
+  - priority: 4
+    category: "peer_reviewed"
+    description: "Peer-reviewed academic papers and journals"
+    examples:
+      - "IEEE, ACM, Springer, Elsevier published papers"
+      - "arXiv preprints (treat with caution — not peer-reviewed)"
+      - "Conference proceedings from reputable venues"
+    trust_level: high
+    notes: >
+      Use for advanced topics, recent developments, or when the textbook
+      coverage is insufficient. Always verify that the paper is from a
+      reputable venue. Preprints should be cross-checked.
+
+  - priority: 5
+    category: "reputable_academic"
+    description: "Well-known academic and educational websites"
+    examples:
+      - "GeeksforGeeks (verify accuracy — sometimes has errors)"
+      - "Tutorialspoint"
+      - "JavaTPoint"
+      - "Khan Academy"
+      - "MIT OpenCourseWare"
+      - "NPTEL lectures and notes"
+      - "Coursera / edX course materials"
+    trust_level: moderate_to_high
+    notes: >
+      Good for explanations, examples, and alternative perspectives.
+      Always cross-check factual claims against higher-priority sources.
+      Community-edited sites (like GeeksforGeeks) occasionally have errors
+      in code examples or definitions — verify before including.
+
+  - priority: 6
+    category: "technical_documentation"
+    description: "Official documentation for tools, languages, and frameworks"
+    examples:
+      - "Python official docs (docs.python.org)"
+      - "MDN Web Docs"
+      - "Oracle Java documentation"
+      - "Microsoft Learn / MSDN"
+      - "Linux man pages"
+    trust_level: high
+    notes: >
+      Authoritative for syntax, API details, and tool-specific information.
+      Use when the question involves a specific technology. These are
+      reliable but may not match the simplified version taught in class —
+      prefer the textbook's explanation for exam answers.
+
+  - priority: 7
+    category: "educational_platforms"
+    description: "Community forums, blogs, and Q&A platforms"
+    examples:
+      - "Stack Overflow (top-voted answers only)"
+      - "Wikipedia (use as a starting point, not a citation)"
+      - "Medium / Dev.to technical articles"
+      - "YouTube educational channels (for conceptual understanding)"
+    trust_level: moderate
+    notes: >
+      Useful for understanding concepts and finding examples, but never
+      rely on these as the sole source. Always verify against a higher-
+      priority source. Wikipedia is good for quick context but should not
+      be the basis for an exam answer.
+
+# ---------------------------------------------------------------------------
+# Source Verification Rules
+# ---------------------------------------------------------------------------
+source_verification:
+  cross_check_minimum: 2             # Verify facts against at least 2 sources
+  flag_single_source: true           # Warn when only one source confirms a claim
+  check_publication_date: true       # Prefer recent sources for fast-moving fields
+  max_source_age_years: 10           # Flag sources older than this (unless classic texts)
+
+  verification_steps:
+    - "Check if the information appears in the prescribed textbook."
+    - "Cross-reference with at least one other independent source."
+    - "Verify numerical values, formulas, and code snippets independently."
+    - "Check that definitions match the terminology used in the university syllabus."
+    - "For recent topics, confirm the information is current (not outdated)."
+
+# ---------------------------------------------------------------------------
+# Handling Conflicting Information
+# ---------------------------------------------------------------------------
+conflict_resolution:
+  strategy: "prefer-higher-priority"  # Default: use the higher-priority source
+
+  rules:
+    - rule: "University material vs. textbook"
+      action: "Follow the university's version for exam answers. Note the textbook's version if it differs."
+
+    - rule: "Textbook vs. online resource"
+      action: "Follow the textbook. Online resources supplement but do not replace prescribed texts."
+
+    - rule: "Two sources of equal priority disagree"
+      action: "Present both perspectives. Indicate which is more widely accepted. Let the student choose based on their professor's teaching."
+
+    - rule: "Outdated textbook vs. current practice"
+      action: "For exam answers, follow the textbook. Add a note about current practice if relevant (e.g., 'Note: Modern implementations use X instead')."
+
+    - rule: "Multiple conflicting definitions"
+      action: "Use the definition from the prescribed textbook. Mention that alternative definitions exist and briefly state the difference."
+
+# ---------------------------------------------------------------------------
+# Offline Fallback Strategy
+# ---------------------------------------------------------------------------
+# When internet access is unavailable, the engine must still produce useful
+# output using whatever information is already available.
+# ---------------------------------------------------------------------------
+offline_strategy:
+  behavior: "graceful-degradation"    # Don't fail — do the best with what's available
+
+  steps:
+    - "Use the user-provided syllabus, notes, or question papers as primary input."
+    - "Rely on the agent's training knowledge for standard academic topics."
+    - "Clearly mark any section where online verification was not possible."
+    - "Add a disclaimer: 'This content was generated without internet access. Verify key facts against your textbook.'"
+    - "Skip PYQ frequency analysis if no papers are available locally."
+    - "Focus on producing structurally sound answers even if source diversity is limited."
+
+  warnings:
+    - "PYQ analysis accuracy may be reduced without access to recent papers."
+    - "Source citations will be limited to locally available materials."
+    - "Trend analysis (frequently asked topics) may be incomplete."
+
+# ---------------------------------------------------------------------------
+# Previous Year Paper (PYQ) Search Strategy
+# ---------------------------------------------------------------------------
+# When searching for previous year question papers, follow this priority
+# order to find the most relevant papers first.
+# ---------------------------------------------------------------------------
+pyq_search_strategy:
+
+  search_order:
+    - step: 1
+      target: "Same university, same course, same subject"
+      description: >
+        Look for papers from the exact university, course code, and subject
+        the student is preparing for. These are the most relevant because
+        they reflect the actual examiner's patterns and preferences.
+      sources:
+        - "University exam portal / archive"
+        - "University library digital repository"
+        - "Student community sites for that university"
+
+    - step: 2
+      target: "Same university, same department, related subjects"
+      description: >
+        If exact papers are not found, look for papers from the same
+        department. Related subjects often share examiners and question
+        styles.
+      sources:
+        - "Department website archives"
+        - "Senior students' shared collections"
+
+    - step: 3
+      target: "Same board or affiliating university"
+      description: >
+        For affiliated colleges, search papers from the parent university
+        or other colleges under the same board. The syllabus and exam
+        pattern are usually identical.
+      sources:
+        - "Affiliating university exam archives"
+        - "Other affiliated college websites"
+
+    - step: 4
+      target: "Comparable courses at other universities"
+      description: >
+        When no papers from the same university or board are available,
+        search for papers from other universities with a similar syllabus.
+        Focus on universities with comparable academic standards.
+      sources:
+        - "Top-tier university open archives"
+        - "Educational resource aggregator sites"
+        - "Subject-specific paper banks"
+
+  analysis_rules:
+    - "Identify topics that appear in 3+ consecutive years — these are high-priority."
+    - "Track question formats (MCQ vs. descriptive vs. numerical) across years."
+    - "Note changes in exam pattern or syllabus between years."
+    - "Flag topics that appeared for the first time recently — they may repeat."
+    - "Calculate frequency percentages: (times asked ÷ total papers) × 100."
+
+# ---------------------------------------------------------------------------
+# Syllabus Research Strategy
+# ---------------------------------------------------------------------------
+# How to find, parse, and use syllabus information effectively.
+# ---------------------------------------------------------------------------
+syllabus_strategy:
+
+  acquisition_order:
+    - step: 1
+      method: "User-provided syllabus"
+      description: >
+        Always prefer the syllabus document provided by the student. It is
+        the definitive source for what the examiner expects.
+      action: "Parse all units, topics, sub-topics, and reference books."
+
+    - step: 2
+      method: "University website"
+      description: >
+        Search the official university website for the latest syllabus
+        document (usually PDF) for the specific course code.
+      action: "Download and cross-reference with user-provided version."
+
+    - step: 3
+      method: "Affiliating body curriculum"
+      description: >
+        For affiliated colleges, check the parent university or regulatory
+        body (UGC, AICTE) for the model curriculum.
+      action: "Use as a supplement if the specific university syllabus is unavailable."
+
+  parsing_rules:
+    - "Extract every unit title and its sub-topics into a structured list."
+    - "Identify prescribed textbooks and reference books from the syllabus."
+    - "Note the credit hours or weightage assigned to each unit."
+    - "Flag any 'self-study' or 'optional' topics — they may still appear in exams."
+    - "Map syllabus topics to PYQ frequency data to identify high-value areas."
+
+  coverage_validation:
+    - "After generating content, verify that every syllabus topic has been covered."
+    - "Flag any topic that could not be adequately covered due to missing sources."
+    - "Generate a coverage report showing: topic → covered (yes/no) → depth level."

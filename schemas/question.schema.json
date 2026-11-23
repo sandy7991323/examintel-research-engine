@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "question.schema.json",
+  "title": "Exam Question",
+  "description": "Schema for an individual exam question extracted from a university question paper, including classification, marks, and syllabus mapping.",
+  "type": "object",
+  "properties": {
+    "question_id": {
+      "type": "string",
+      "description": "Unique identifier for this question."
+    },
+    "paper_id": {
+      "type": "string",
+      "description": "Identifier of the parent paper this question belongs to."
+    },
+    "section": {
+      "type": "string",
+      "description": "Section label within the paper (e.g. 'A', 'Section B')."
+    },
+    "question_number": {
+      "type": ["integer", "string"],
+      "description": "Main question number as printed on the paper."
+    },
+    "sub_question": {
+      "type": "string",
+      "description": "Sub-question identifier — a letter or number (e.g. 'a', 'ii', '3')."
+    },
+    "question_text": {
+      "type": "string",
+      "description": "Full text of the question."
+    },
+    "marks": {
+      "type": "integer",
+      "description": "Marks allocated to this question.",
+      "minimum": 0
+    },
+    "word_limit": {
+      "type": ["integer", "null"],
+      "description": "Word limit specified for the answer, if any.",
+      "minimum": 0
+    },
+    "question_type": {
+      "type": "string",
+      "description": "Pedagogical type of the question.",
+      "enum": [
+        "definition",
+        "explanation",
+        "comparison",
+        "numerical",
+        "diagram",
+        "essay",
+        "short-answer",
+        "mcq",
+        "practical",
+        "application"
+      ]
+    },
+    "has_internal_choice": {
+      "type": "boolean",
+      "description": "Whether an OR/internal-choice alternative exists for this question."
+    },
+    "choice_questions": {
+      "type": "array",
+      "description": "List of alternative question IDs or inline question objects offered as internal choices.",
+      "items": {
+        "type": ["string", "object"]
+      }
+    },
+    "topic": {
+      "type": "string",
+      "description": "Primary syllabus topic this question maps to."
+    },
+    "unit": {
+      "type": ["string", "integer"],
+      "description": "Syllabus unit number or title this question belongs to."
+    },
+    "page_reference": {
+      "type": ["integer", "string"],
+      "description": "Page number in the source document where this question appears."
+    },
+    "is_compulsory": {
+      "type": "boolean",
+      "description": "Whether answering this question is compulsory."
+    },
+    "special_instructions": {
+      "type": "string",
+      "description": "Any special instructions attached to this question (e.g. 'draw neat diagram', 'use log tables')."
+    }
+  },
+  "required": ["question_id", "question_text", "marks"],
+  "additionalProperties": false
+}

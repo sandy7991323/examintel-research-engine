@@ -1,0 +1,297 @@
+{
+  "$schema": "schemas/paper.schema.json",
+  "paper_id": "CCSU-BCA-S3-DS-18012-DEC2025",
+  "university": "Chaudhary Charan Singh University, Meerut",
+  "course": "BCA",
+  "semester": "3rd Semester",
+  "subject": "Data Structures Using C and C++",
+  "subject_code": "18012",
+  "exam_year": "2025",
+  "exam_session": "December",
+  "max_marks": 70,
+  "duration_minutes": 180,
+  "extraction_method": "digital_pdf",
+  "extraction_confidence": "high",
+  "unreadable_portions": [],
+  "total_questions": 22,
+  "internal_choices": 7,
+  "source_file": "BCA_3rd_Sem_Data_Structures_C_CPP_18012_Dec_2025.pdf",
+  "sections": [
+    {
+      "section_name": "Section A",
+      "instructions": "Attempt all questions. Each question carries 2 marks.",
+      "is_compulsory": true,
+      "total_marks": 20,
+      "questions": [
+        {
+          "question_id": "CCSU-DS-2025-A1",
+          "question_number": "1",
+          "question_text": "Define an array. What are its types?",
+          "marks": 2,
+          "question_type": "definition",
+          "topic": "Arrays",
+          "unit": 1,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A2",
+          "question_number": "2",
+          "question_text": "What is a linked list? How is it different from an array?",
+          "marks": 2,
+          "question_type": "comparison",
+          "topic": "Linked Lists",
+          "unit": 2,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A3",
+          "question_number": "3",
+          "question_text": "Define a stack. List its operations.",
+          "marks": 2,
+          "question_type": "definition",
+          "topic": "Stacks",
+          "unit": 3,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A4",
+          "question_number": "4",
+          "question_text": "What is a circular queue? State its advantage over a simple queue.",
+          "marks": 2,
+          "question_type": "explanation",
+          "topic": "Queues",
+          "unit": 3,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A5",
+          "question_number": "5",
+          "question_text": "Write the time complexity of binary search algorithm.",
+          "marks": 2,
+          "question_type": "short-answer",
+          "topic": "Searching",
+          "unit": 1,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A6",
+          "question_number": "6",
+          "question_text": "Define a binary tree. What is a complete binary tree?",
+          "marks": 2,
+          "question_type": "definition",
+          "topic": "Trees",
+          "unit": 4,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A7",
+          "question_number": "7",
+          "question_text": "What is hashing? Name any two hash functions.",
+          "marks": 2,
+          "question_type": "definition",
+          "topic": "Hashing",
+          "unit": 5,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A8",
+          "question_number": "8",
+          "question_text": "Differentiate between BFS and DFS.",
+          "marks": 2,
+          "question_type": "comparison",
+          "topic": "Graph Traversal",
+          "unit": 5,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A9",
+          "question_number": "9",
+          "question_text": "What is the best case and worst case time complexity of Quick Sort?",
+          "marks": 2,
+          "question_type": "short-answer",
+          "topic": "Sorting",
+          "unit": 1,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-A10",
+          "question_number": "10",
+          "question_text": "Define an AVL tree. Why is it used?",
+          "marks": 2,
+          "question_type": "definition",
+          "topic": "AVL Trees",
+          "unit": 4,
+          "has_internal_choice": false,
+          "is_compulsory": true,
+          "page_reference": 1
+        }
+      ]
+    },
+    {
+      "section_name": "Section B",
+      "instructions": "Attempt any five questions out of eight. Each question carries 5 marks.",
+      "is_compulsory": false,
+      "total_marks": 25,
+      "questions": [
+        {
+          "question_id": "CCSU-DS-2025-B1",
+          "question_number": "11",
+          "question_text": "Explain the insertion sort algorithm with a suitable example. Write its time complexity.",
+          "marks": 5,
+          "question_type": "explanation",
+          "topic": "Sorting",
+          "unit": 1,
+          "has_internal_choice": false,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-B2",
+          "question_number": "12",
+          "question_text": "Write a program in C to implement a stack using an array.",
+          "marks": 5,
+          "question_type": "practical",
+          "topic": "Stacks",
+          "unit": 3,
+          "has_internal_choice": false,
+          "page_reference": 1
+        },
+        {
+          "question_id": "CCSU-DS-2025-B3",
+          "question_number": "13",
+          "question_text": "Explain the concept of doubly linked list with insertion and deletion operations.",
+          "marks": 5,
+          "question_type": "explanation",
+          "topic": "Linked Lists",
+          "unit": 2,
+          "has_internal_choice": false,
+          "page_reference": 2
+        },
+        {
+          "question_id": "CCSU-DS-2025-B4",
+          "question_number": "14",
+          "question_text": "Convert the following infix expression to postfix: A + B * C - (D / E + F) * G",
+          "marks": 5,
+          "question_type": "numerical",
+          "topic": "Expression Conversion",
+          "unit": 3,
+          "has_internal_choice": false,
+          "page_reference": 2
+        },
+        {
+          "question_id": "CCSU-DS-2025-B5",
+          "question_number": "15",
+          "question_text": "Explain the binary search tree with its insertion operation. Give an example.",
+          "marks": 5,
+          "question_type": "explanation",
+          "topic": "Trees",
+          "unit": 4,
+          "has_internal_choice": false,
+          "page_reference": 2
+        },
+        {
+          "question_id": "CCSU-DS-2025-B6",
+          "question_number": "16",
+          "question_text": "What is a graph? Explain its representation using adjacency matrix and adjacency list.",
+          "marks": 5,
+          "question_type": "explanation",
+          "topic": "Graphs",
+          "unit": 5,
+          "has_internal_choice": false,
+          "page_reference": 2
+        },
+        {
+          "question_id": "CCSU-DS-2025-B7",
+          "question_number": "17",
+          "question_text": "Explain collision resolution techniques in hashing.",
+          "marks": 5,
+          "question_type": "explanation",
+          "topic": "Hashing",
+          "unit": 5,
+          "has_internal_choice": false,
+          "page_reference": 2
+        },
+        {
+          "question_id": "CCSU-DS-2025-B8",
+          "question_number": "18",
+          "question_text": "Write a C program to implement a linear queue using an array.",
+          "marks": 5,
+          "question_type": "practical",
+          "topic": "Queues",
+          "unit": 3,
+          "has_internal_choice": false,
+          "page_reference": 2
+        }
+      ]
+    },
+    {
+      "section_name": "Section C",
+      "instructions": "Attempt any two questions out of four. Each question carries 12.5 marks.",
+      "is_compulsory": false,
+      "total_marks": 25,
+      "questions": [
+        {
+          "question_id": "CCSU-DS-2025-C1",
+          "question_number": "19",
+          "question_text": "What are the different types of linked lists? Explain singly, doubly, and circular linked lists with diagrams and operations (insertion, deletion, traversal).",
+          "marks": 12.5,
+          "question_type": "essay",
+          "topic": "Linked Lists",
+          "unit": 2,
+          "has_internal_choice": false,
+          "page_reference": 2
+        },
+        {
+          "question_id": "CCSU-DS-2025-C2",
+          "question_number": "20",
+          "question_text": "Explain the merge sort algorithm in detail. Write its algorithm, trace it on the array [38, 27, 43, 3, 9, 82, 10], and analyze its time and space complexity.",
+          "marks": 12.5,
+          "question_type": "essay",
+          "topic": "Sorting",
+          "unit": 1,
+          "has_internal_choice": false,
+          "page_reference": 2
+        },
+        {
+          "question_id": "CCSU-DS-2025-C3",
+          "question_number": "21",
+          "question_text": "Explain tree traversal techniques: Inorder, Preorder, and Postorder. Write recursive algorithms for each and trace them on a given binary tree.",
+          "marks": 12.5,
+          "question_type": "essay",
+          "topic": "Tree Traversal",
+          "unit": 4,
+          "has_internal_choice": false,
+          "page_reference": 2
+        },
+        {
+          "question_id": "CCSU-DS-2025-C4",
+          "question_number": "22",
+          "question_text": "What is a graph? Explain BFS and DFS traversal algorithms in detail with examples and their applications.",
+          "marks": 12.5,
+          "question_type": "essay",
+          "topic": "Graph Traversal",
+          "unit": 5,
+          "has_internal_choice": false,
+          "page_reference": 2
+        }
+      ]
+    }
+  ]
+}

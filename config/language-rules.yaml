@@ -1,0 +1,160 @@
+# =============================================================================
+# ExamIntel Research Engine — Language & Writing Rules
+# =============================================================================
+# These rules ensure that all generated content reads like it was written by
+# a knowledgeable human teacher — not by an AI. Every output must pass the
+# "would a professor hand this to students?" test.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Vocabulary Level
+# ---------------------------------------------------------------------------
+vocabulary_level: simple             # Keep language accessible to undergraduate students
+max_sentence_length: 25              # Average words per sentence (aim for variety: 8–30)
+
+# ---------------------------------------------------------------------------
+# Banned Phrases
+# ---------------------------------------------------------------------------
+# These phrases are overused AI clichés. Never use them in any output.
+# The preferred_alternatives map below provides a human-sounding replacement
+# for each one. When no alternative fits the context, just drop the phrase.
+# ---------------------------------------------------------------------------
+banned_phrases:
+  - "delve into"
+  - "it is important to note"
+  - "in today's modern world"
+  - "multifaceted"
+  - "leverage"
+  - "utilize"
+  - "paramount"
+  - "aforementioned"
+  - "comprehensive overview"
+  - "in conclusion"
+  - "it should be noted"
+  - "furthermore"
+  - "in the realm of"
+  - "it's worth noting that"
+  - "plays a crucial role"
+  - "a myriad of"
+  - "at the end of the day"
+  - "in light of"
+  - "needless to say"
+  - "as we can see"
+  - "it goes without saying"
+  - "in essence"
+  - "serves as a testament to"
+  - "navigating the complexities"
+  - "a paradigm shift"
+  - "holistic approach"
+  - "synergy"
+  - "cutting-edge"
+  - "game-changer"
+  - "robust"
+  - "seamless"
+  - "embark on a journey"
+  - "pivotal"
+  - "foster"
+  - "landscape"
+  - "tapestry"
+  - "underscores"
+  - "paves the way"
+  - "stands as a testament"
+  - "in an era where"
+
+# ---------------------------------------------------------------------------
+# Preferred Alternatives
+# ---------------------------------------------------------------------------
+# Maps each banned phrase to a simpler, natural replacement.
+# Use the replacement only when it fits — otherwise rewrite the sentence.
+# ---------------------------------------------------------------------------
+preferred_alternatives:
+  "delve into":                      "look at"
+  "it is important to note":         "note that" # or just state the fact directly
+  "in today's modern world":         "today" # or "now" or "currently"
+  "multifaceted":                    "complex" # or "has several parts"
+  "leverage":                        "use"
+  "utilize":                         "use"
+  "paramount":                       "essential" # or "critical"
+  "aforementioned":                  "this" # or "the earlier" or repeat the noun
+  "comprehensive overview":          "summary" # or "overview"
+  "in conclusion":                   "to sum up" # or "finally" or just start concluding
+  "it should be noted":              "keep in mind" # or just state the fact
+  "furthermore":                     "also" # or "and" or "on top of that"
+  "in the realm of":                 "in"
+  "it's worth noting that":          "notice that" # or drop entirely
+  "plays a crucial role":            "matters because" # or "is key to"
+  "a myriad of":                     "many"
+  "at the end of the day":           "ultimately" # or just drop it
+  "in light of":                     "because of" # or "given"
+  "needless to say":                 "" # just say it — no preamble needed
+  "as we can see":                   "" # just describe what is there
+  "it goes without saying":          "" # if it goes without saying, don't say it
+  "in essence":                      "basically" # or "in short"
+  "serves as a testament to":        "shows"
+  "navigating the complexities":     "dealing with"
+  "a paradigm shift":                "a major change"
+  "holistic approach":               "complete approach" # or "full picture"
+  "synergy":                         "combined effect"
+  "cutting-edge":                    "latest" # or "modern" or "advanced"
+  "game-changer":                    "big improvement" # or describe the actual impact
+  "robust":                          "strong" # or "reliable"
+  "seamless":                        "smooth"
+  "embark on a journey":             "start" # or "begin"
+  "pivotal":                         "key" # or "important"
+  "foster":                          "encourage" # or "support"
+  "landscape":                       "field" # or "area"
+  "tapestry":                        "mix" # or "combination"
+  "underscores":                     "highlights" # or "shows"
+  "paves the way":                   "opens the door to" # or "makes possible"
+  "stands as a testament":           "proves" # or "shows"
+  "in an era where":                 "now that" # or "since"
+
+# ---------------------------------------------------------------------------
+# Writing Principles
+# ---------------------------------------------------------------------------
+# These are the guiding rules for all written output. Every paragraph must
+# feel like a skilled teacher explaining something to a student one-on-one.
+# ---------------------------------------------------------------------------
+writing_principles:
+  - "Write like a teacher explaining to a student sitting across the table."
+  - "Use active voice wherever possible ('The CPU fetches the instruction' not 'The instruction is fetched by the CPU')."
+  - "Vary sentence length — mix short punchy sentences with longer explanatory ones."
+  - "Always explain WHY something matters, not just WHAT it is."
+  - "Use real-world examples and analogies that students can relate to."
+  - "Start paragraphs with the main idea, then support it."
+  - "Avoid filler sentences that add no information."
+  - "Write definitions that a student can actually remember, not textbook jargon."
+  - "If a concept is hard, break it into smaller pieces before explaining."
+  - "Use numbered steps for processes and bullet points for lists — don't bury them in prose."
+  - "Talk to the reader directly — say 'you' and 'your' when it helps."
+  - "Never pad an answer to hit a word count. Say what needs saying, then stop."
+  - "When comparing two things, use a table or side-by-side format."
+  - "Put the most useful information first (inverted pyramid style)."
+  - "Read your text aloud mentally — if it sounds stiff or robotic, rewrite it."
+
+# ---------------------------------------------------------------------------
+# Paragraph Rules
+# ---------------------------------------------------------------------------
+paragraph_rules:
+  min_sentences: 3
+  max_sentences: 5
+  natural_transitions: true          # Connect paragraphs with logical flow, not forced connectors
+  avoid_single_sentence_paragraphs: true  # Except for emphasis or definitions
+
+# ---------------------------------------------------------------------------
+# Technical Terms
+# ---------------------------------------------------------------------------
+technical_terms_rule: >
+  Use technical terms when they are the correct terminology for the subject,
+  but always explain them in simple English on first use. Put the plain-language
+  explanation in parentheses or in the sentence immediately after. Never assume
+  the reader already knows a term — if the term is in the syllabus, the student
+  needs to learn it, so teach it properly.
+
+# ---------------------------------------------------------------------------
+# Tone & Style
+# ---------------------------------------------------------------------------
+tone: conversational-academic        # Professional but approachable
+person: second                       # Address reader as "you"
+contractions: allowed                # "don't", "it's", "you'll" are fine
+humor: subtle                        # Light touches okay — no jokes that distract

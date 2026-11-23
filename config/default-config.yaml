@@ -1,0 +1,112 @@
+# =============================================================================
+# ExamIntel Research Engine — Default Configuration
+# =============================================================================
+# This file contains the default settings for the ExamIntel Research Engine
+# skill. All values here act as fallbacks when no user override is provided.
+# To customize, copy this file and modify the values you need.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Core Mode & Language
+# ---------------------------------------------------------------------------
+default_mode: full-research          # Options: full-research, quick-notes, pyq-only, syllabus-map
+default_language: english            # Primary output language
+
+# ---------------------------------------------------------------------------
+# Output Formats
+# ---------------------------------------------------------------------------
+output_formats:
+  - pdf       # Print-ready handbook with styling
+  - html      # Standalone single-file HTML (embeds CSS/images)
+  - json      # Structured data export for programmatic use
+  - md        # Clean Markdown for version control / editors
+
+preferred_format: pdf                # Format used when user does not specify
+
+# ---------------------------------------------------------------------------
+# Output Directory & File Naming
+# ---------------------------------------------------------------------------
+output:
+  base_directory: "./output"         # Relative to the workspace root
+  create_if_missing: true            # Auto-create output directory
+  organize_by_subject: true          # Create sub-folders per subject/course
+
+  file_naming:
+    # Available placeholders:
+    #   {subject}     — subject or course name (slugified)
+    #   {type}        — artifact type (handbook, notes, pyq-analysis, etc.)
+    #   {date}        — generation date (YYYY-MM-DD)
+    #   {university}  — university short name when known
+    #   {marks}       — target marks when applicable
+    pattern: "{subject}_{type}_{date}"
+    slugify: true                    # Convert spaces/special chars to hyphens
+    lowercase: true                  # Force lowercase file names
+    max_length: 120                  # Max characters in the file name (sans extension)
+
+# ---------------------------------------------------------------------------
+# Research Settings
+# ---------------------------------------------------------------------------
+research_depth: comprehensive        # Options: quick, moderate, comprehensive
+max_research_sources: 10             # Max external sources to consult per topic
+capability_check: true               # Verify tool/internet availability before starting
+
+# ---------------------------------------------------------------------------
+# Answer Quality
+# ---------------------------------------------------------------------------
+answer_verification: true            # Cross-check answers against multiple sources
+diagram_format: mermaid              # Options: mermaid, ascii, none
+ocr_enabled: auto                    # Options: true, false, auto (detect when needed)
+
+# ---------------------------------------------------------------------------
+# PDF Styling Defaults
+# ---------------------------------------------------------------------------
+pdf_styling:
+  page_size: A4                      # Options: A4, Letter, Legal
+  orientation: portrait              # Options: portrait, landscape
+
+  margins:
+    top: "20mm"
+    bottom: "20mm"
+    left: "18mm"
+    right: "18mm"
+
+  fonts:
+    body:
+      family: "Noto Sans"
+      size: "11pt"
+      line_height: 1.6
+    headings:
+      family: "Noto Sans"
+      weight: 700
+    code:
+      family: "Fira Code, Consolas, monospace"
+      size: "10pt"
+
+  colors:
+    heading: "#1a1a2e"
+    body_text: "#222222"
+    accent: "#0f4c81"
+    code_background: "#f5f5f5"
+    table_header_bg: "#0f4c81"
+    table_header_text: "#ffffff"
+    table_alt_row: "#f9f9f9"
+
+  header_footer:
+    show_header: true
+    show_footer: true
+    header_text: "{subject} — ExamIntel Handbook"
+    footer_text: "Page {page} of {total_pages}"
+
+  cover_page:
+    enabled: true
+    show_date: true
+    show_university: true
+    show_subject: true
+
+# ---------------------------------------------------------------------------
+# Logging & Diagnostics
+# ---------------------------------------------------------------------------
+logging:
+  level: info                        # Options: debug, info, warn, error
+  log_research_sources: true         # Record which sources were consulted
+  log_to_file: false                 # Write logs to output directory

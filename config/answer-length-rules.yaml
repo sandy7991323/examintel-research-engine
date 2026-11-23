@@ -1,0 +1,207 @@
+# =============================================================================
+# ExamIntel Research Engine — Answer Length Rules (Mark-wise)
+# =============================================================================
+# This file defines the recommended length, structure, and key elements for
+# answers based on the marks allocated. These are configurable guidelines —
+# not rigid rules. The goal is to help students write answers that are
+# appropriately sized and structured for the marks available.
+#
+# IMPORTANT: If the question paper itself specifies a word limit or format
+# (e.g., "Answer in 200 words" or "Draw and explain"), ALWAYS follow the
+# paper's instructions over these defaults.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Override Rule
+# ---------------------------------------------------------------------------
+paper_override_rule: >
+  When the exam paper explicitly states a word limit, page limit, or answer
+  format for a question, those instructions override everything in this file.
+  Always follow what the paper says. These defaults exist only for cases where
+  the paper gives marks but no length guidance.
+
+# ---------------------------------------------------------------------------
+# Mark-wise Answer Configuration
+# ---------------------------------------------------------------------------
+mark_wise_answers:
+
+  # --- 1 Mark: One-liner / Definition ---
+  1:
+    min_words: 15
+    max_words: 40
+    time_minutes: 1
+    structure_type: "direct-definition"
+    key_elements:
+      - "definition or direct answer"
+      - "formula (if applicable)"
+    guidance: >
+      Give a crisp, accurate one-liner. No introduction or conclusion needed.
+      If a formula is involved, state it with variable meanings.
+    example_format: |
+      **Q: What is an operating system?**
+      An operating system is system software that manages hardware resources
+      and provides services for application programs. Examples: Windows, Linux.
+
+  # --- 2 Marks: Short Answer ---
+  2:
+    min_words: 40
+    max_words: 80
+    time_minutes: 2
+    structure_type: "direct-definition"
+    key_elements:
+      - "definition"
+      - "one key point or example"
+      - "formula (if applicable)"
+    guidance: >
+      Write 2–3 sentences. Define the term, give one supporting point or
+      example. Keep it tight — no padding.
+
+  # --- 3 Marks: Brief Explanation ---
+  3:
+    min_words: 80
+    max_words: 150
+    time_minutes: 4
+    structure_type: "structured-short"
+    key_elements:
+      - "definition"
+      - "explanation (2–3 key points)"
+      - "example or diagram"
+    guidance: >
+      Open with a clear definition, follow with 2–3 key points, and close
+      with a small example or diagram if relevant. Use bullet points for
+      the key points when it helps readability.
+
+  # --- 4 Marks: Detailed Short Answer ---
+  4:
+    min_words: 120
+    max_words: 200
+    time_minutes: 5
+    structure_type: "structured-short"
+    key_elements:
+      - "definition"
+      - "explanation with 3–4 points"
+      - "example"
+      - "diagram (if applicable)"
+    guidance: >
+      Similar to 3-mark but with more depth. Add an extra supporting point
+      and a more detailed example. A small diagram earns extra credit in
+      technical subjects.
+
+  # --- 5 Marks: Medium Answer ---
+  5:
+    min_words: 200
+    max_words: 350
+    time_minutes: 8
+    structure_type: "medium-essay"
+    key_elements:
+      - "brief intro (1–2 sentences)"
+      - "definition"
+      - "detailed explanation (4–5 points)"
+      - "example or case study"
+      - "diagram (recommended)"
+      - "brief closing (1 sentence)"
+    guidance: >
+      Start with a one-line intro that sets context. Define the term, then
+      explain with 4–5 well-structured points. Include a diagram or example.
+      End with a one-line takeaway — not a formal "In conclusion" paragraph.
+
+  # --- 8 Marks: Long Answer ---
+  8:
+    min_words: 400
+    max_words: 600
+    time_minutes: 12
+    structure_type: "medium-essay"
+    key_elements:
+      - "introduction (2–3 sentences)"
+      - "definition and background"
+      - "detailed explanation (5–6 points with sub-points)"
+      - "diagram or flowchart"
+      - "real-world example or application"
+      - "advantages / disadvantages (if applicable)"
+      - "summary (2–3 sentences)"
+    guidance: >
+      This is a mini-essay. Structure it with clear headings or numbered
+      sections. A diagram is almost always expected at this level. Cover
+      the topic from multiple angles — what, why, how, and where it applies.
+
+  # --- 10 Marks: Full Essay ---
+  10:
+    min_words: 500
+    max_words: 800
+    time_minutes: 15
+    structure_type: "full-essay"
+    key_elements:
+      - "introduction with context"
+      - "clear definition"
+      - "detailed explanation with 6–8 organized points"
+      - "diagrams (1–2 recommended)"
+      - "real-world examples / case studies"
+      - "comparison or analysis (if the topic allows)"
+      - "advantages and disadvantages"
+      - "conclusion with key takeaway"
+    guidance: >
+      Write a well-organized essay with section headings. Use at least one
+      diagram and one real-world example. Cover the topic thoroughly — an
+      examiner expects depth at 10 marks. Conclude with a meaningful
+      takeaway, not a generic summary.
+
+  # --- 15 Marks: Comprehensive Essay ---
+  15:
+    min_words: 800
+    max_words: 1200
+    time_minutes: 22
+    structure_type: "full-essay"
+    key_elements:
+      - "strong introduction with context and relevance"
+      - "definitions of all key terms"
+      - "detailed explanation with 8–10 organized sections"
+      - "multiple diagrams (2–3)"
+      - "worked examples or case studies"
+      - "comparison tables (if applicable)"
+      - "critical analysis or evaluation"
+      - "advantages, disadvantages, and limitations"
+      - "future trends or developments (if relevant)"
+      - "well-rounded conclusion"
+    guidance: >
+      This is a major answer. Plan your structure before writing. Use
+      headings, sub-headings, diagrams, and tables. Cover theoretical
+      foundations, practical applications, and analytical perspectives.
+      The examiner is looking for both breadth and depth.
+
+  # --- 20 Marks: Exhaustive Essay ---
+  20:
+    min_words: 1200
+    max_words: 1800
+    time_minutes: 30
+    structure_type: "full-essay"
+    key_elements:
+      - "comprehensive introduction establishing scope"
+      - "definitions and historical context"
+      - "detailed theory with 10+ organized sections"
+      - "multiple diagrams and flowcharts (3–4)"
+      - "worked numerical examples (if applicable)"
+      - "real-world case studies"
+      - "comparison with alternatives"
+      - "critical evaluation and analysis"
+      - "advantages, disadvantages, and trade-offs"
+      - "current trends and future directions"
+      - "strong conclusion tying everything together"
+    guidance: >
+      This is the highest-weight answer. Treat it like a short chapter from
+      a textbook. Cover every angle: theory, practice, examples, analysis,
+      and outlook. Use diagrams, tables, and worked examples generously.
+      Quality matters more than hitting the max word count — write until
+      you have covered the topic properly, then stop.
+
+# ---------------------------------------------------------------------------
+# General Rules
+# ---------------------------------------------------------------------------
+general_rules:
+  - "These word counts are targets, not hard limits. A great 450-word answer beats a padded 600-word one."
+  - "Diagrams count toward the answer's value but not the word count."
+  - "Always label diagrams clearly with a title and figure number."
+  - "For numerical problems, show every step of the working — don't skip steps."
+  - "Use headings and sub-headings for answers of 5 marks and above."
+  - "Bullet points and numbered lists are acceptable and often preferred by examiners."
+  - "Time allocations assume a 3-hour paper. Adjust proportionally for shorter exams."
+  - "When in doubt about length, write slightly more rather than less — but never pad."
